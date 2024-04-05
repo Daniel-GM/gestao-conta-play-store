@@ -21,12 +21,19 @@ body {
   margin: 0;
 }
 
-p, li, h2, h3, h4, label {
+p, 
+li, 
+h2, 
+h3, 
+h4, 
+label {
   color: #444;
   font-size: 14px;
 }
 
-label, h2, h3 {
+label, 
+h2, 
+h3 {
   margin: 0;
 }
 
@@ -43,7 +50,9 @@ h3 {
   display: block;
 }
 
-#editar, #id, #erroLogin {
+#editar, 
+#id, 
+#erroLogin {
   display: none;
 }
 
