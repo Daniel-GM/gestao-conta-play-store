@@ -4,7 +4,7 @@ function fazerRequisicao() {
   const hash = md5(senha)
 
   const xhr = new XMLHttpRequest()
-  xhr.open('POST', 'http://localhost/Gestao-Conta/php/webservice.php', true)
+  xhr.open('POST', './php/webservice.php', true)
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -31,7 +31,7 @@ function excluirConta() {
   const idCliente = document.getElementById('idCliente').value
   const xhr = new XMLHttpRequest()
 
-  xhr.open('DELETE', 'http://localhost/Gestao-Conta/php/webservice.php')
+  xhr.open('DELETE', './php/webservice.php')
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -65,7 +65,7 @@ function atualizarDados() {
   const referencia = document.getElementById('inputEditReferencia').value
 
   const xhr = new XMLHttpRequest()
-  xhr.open('PUT', 'http://localhost/Gestao-Conta/php/webservice.php', true)
+  xhr.open('PUT', './php/webservice.php', true)
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -103,7 +103,7 @@ function mudarSenha() {
     alert("As senhas não são iguais")
   } else {
     const xhr = new XMLHttpRequest()
-    xhr.open('PUT', 'http://localhost/Gestao-Conta/php/webservice.php', true)
+    xhr.open('PUT', './php/webservice.php', true)
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
