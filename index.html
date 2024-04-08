@@ -195,7 +195,7 @@
               />
             </div>
 
-            <button class="w-100 btn btn-lg btn-success mb-3" type="submit">
+            <button class="w-100 btn btn-lg btn-success mb-3" type="submit" onclick="atualizarDados()">
               <i class="fa-solid fa-floppy-disk pr-2"></i>Salvar
             </button>
 
@@ -257,11 +257,15 @@
                   placeholder="Confirmar a senha"
                 />
               </div>
+
+              <h3 id="erroSenha"></h3>
+
               <div class="modal-footer">
                 <button
                   class="w-100 btn btn-lg btn-success mr-2"
                   type="submit"
                   data-bs-dismiss="modal"
+                  onclick="mudarSenha()"
                 >
                   <i class="fa-solid fa-key pr-2"></i>Salvar senha
                 </button>

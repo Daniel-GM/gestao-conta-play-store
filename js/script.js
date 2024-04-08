@@ -5,11 +5,10 @@ function fazerRequisicao() {
 
   const xhr = new XMLHttpRequest()
   xhr.open('POST', 'http://localhost/Gestao-Conta/php/webservice.php', true)
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
-        console.log(xhr.responseText)
         const resposta = JSON.parse(xhr.responseText)
         tradeDisplay('none', 'block')
         preencherCampos(resposta)
@@ -20,7 +19,10 @@ function fazerRequisicao() {
       }
     }
   }
-  const dados = 'login=' + encodeURIComponent(login) + '&senha=' + encodeURIComponent(hash)
+  const dados = JSON.stringify({
+    login: login,
+    senha: hash
+  })
   xhr.send(dados)
 }
 
@@ -46,6 +48,83 @@ function excluirConta() {
     idCliente: idCliente
   })
   xhr.send(dados)
+}
+
+function atualizarDados() {
+  const id = document.getElementById('id').value
+  const idCliente = document.getElementById('idCliente').value
+
+  const email = document.getElementById('inputEditEmail').value
+  const nome = document.getElementById('inputEditNome').value
+  const celular = document.getElementById('inputEditCelular').value
+  const cep = document.getElementById('inputEditCep').value
+  const logradouro = document.getElementById('inputEditLogradouro').value
+  const bairro = document.getElementById('inputEditBairro').value
+  const numero = document.getElementById('inputEditNumero').value
+  const complemento = document.getElementById('inputEditComplemento').value
+  const referencia = document.getElementById('inputEditReferencia').value
+
+  const xhr = new XMLHttpRequest()
+  xhr.open('PUT', 'http://localhost/Gestao-Conta/php/webservice.php', true)
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        alert("Dados atualizados com sucesso!")
+      } else {
+        alert("Houve um problema ao atualizar os dados.")
+      }
+    }
+  }
+
+  const dados = JSON.stringify({
+    id: id,
+    idCliente: idCliente,
+    email: email,
+    nome: nome,
+    celular: celular,
+    cep: cep,
+    logradouro: logradouro,
+    bairro: bairro,
+    numero: numero,
+    complemento: complemento,
+    referencia: referencia
+  })
+
+  xhr.send(dados)
+}
+
+function mudarSenha() {
+  const novaSenha = document.querySelector("#novaSenha").value
+  const confirmarSenha = document.querySelector("#confirmarSenha").value
+  const id = document.getElementById('id').value
+
+  if (novaSenha != confirmarSenha) {
+    alert("As senhas não são iguais")
+  } else {
+    const xhr = new XMLHttpRequest()
+    xhr.open('PUT', 'http://localhost/Gestao-Conta/php/webservice.php', true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          alert("Senha atualizada com sucesso!")
+        } else {
+          alert("Houve um problema ao mudar a senha.")
+        }
+      }
+    }
+
+    const hash = md5(novaSenha)
+
+    const dados = JSON.stringify({
+      action: "mudar_senha",
+      password: hash,
+      id: id
+    })
+
+    xhr.send(dados)
+  }
 }
 
 function preencherCampos(dados) {
@@ -89,6 +168,8 @@ function clearData() {
   document.getElementById('inputEditNumero').value = ''
   document.getElementById('inputEditComplemento').value = ''
   document.getElementById('inputEditReferencia').value = ''
+  document.getElementById('novaSenha').value = ''
+  document.getElementById('confirmarSenha').value = ''
 }
 
 function errorLogin() {
