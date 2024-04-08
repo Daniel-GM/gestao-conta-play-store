@@ -42,6 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             unset($dadosUsuario['senha']);
 
+            $conexao->close();
+            
             http_response_code(200);
             header('Content-Type: application/json');
             echo json_encode($dadosUsuario);
@@ -53,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $conexao->close();
 
     } else {
         http_response_code(400);
