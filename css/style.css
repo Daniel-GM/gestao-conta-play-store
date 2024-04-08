@@ -21,6 +21,24 @@ body {
   margin: 0;
 }
 
+.form-floating,
+.modal-body {
+  position: relative;
+}
+
+#inputSenhaOlho,
+#novaSenhaOlho {
+  position: absolute;
+  right: 5%;
+  top: 30%;
+}
+
+#confirmarSenhaOlho {
+  position: absolute;
+  right: 5%;
+  top: 75%;
+}
+
 p, 
 li, 
 h2, 

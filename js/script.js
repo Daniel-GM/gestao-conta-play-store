@@ -182,3 +182,17 @@ function errorLogin() {
     errorLogin.style.display = 'none'
   }, 3000)
 }
+
+function eyeSenha(object) {
+  const id = object.id
+  const inputId = id.replace('Olho', '')
+  const input = document.querySelector(`#${inputId}`)
+
+  if(input.type == 'text') {
+    input.type = 'password'
+    object.className = 'fa-solid fa-eye'
+  } else {
+    input.type = 'text'
+    object.className = 'fas fa-eye-slash'
+  }
+}
